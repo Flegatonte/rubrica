@@ -1,19 +1,23 @@
 package rubrica.model;
 import java.util.ArrayList;
-import java.util.Vector;
+import java.util.List;
 
 public class Rubrica {
-    private Vector<Persona> rubrica;
+    private List<Persona> rubrica;
 
-    public Rubrica(Vector<Persona> rubrica) {
+    public Rubrica() {
+        this.rubrica = new ArrayList<>();
+    }
+
+    public Rubrica(List<Persona> rubrica) {
         this.rubrica = rubrica;
     }
 
-    public Vector<Persona> getRubrica() {
+    public List<Persona> getRubrica() {
         return rubrica;
     }
 
-    public void setRubrica(Vector<Persona> rubrica) {
+    public void setRubrica(List<Persona> rubrica) {
         this.rubrica = rubrica;
     }
 

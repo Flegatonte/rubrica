@@ -17,8 +17,17 @@ public class Persona {
         this.eta = eta;
     }
 
-    public boolean equals(Persona p) {
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Persona)) return false;
+        Persona p = (Persona) obj;
         return this.id == p.getID();
+    }
+
+    @Override
+    public int hashCode() {
+        return Long.hashCode(id);
     }
 
     public long getID() {
