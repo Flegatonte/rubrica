@@ -2,14 +2,16 @@ package rubrica.model;
 
 public class Persona {
     private final long id;
+    private static int idCounter = 0;
+
     private String nome;
     private String cognome;
     private String indirizzo;
     private String telefono;
     private int eta;
 
-    public Persona(long id, String nome, String cognome, String indirizzo, String telefono, int eta) {
-        this.id = id;
+    public Persona(String nome, String cognome, String indirizzo, String telefono, int eta) {
+        this.id = idCounter++;
         this.nome = nome;
         this.cognome = cognome;
         this.indirizzo = indirizzo;
@@ -28,6 +30,11 @@ public class Persona {
     @Override
     public int hashCode() {
         return Long.hashCode(id);
+    }
+
+    @Override
+    public String toString() {
+        return nome + ' ' + cognome + ", " + eta + ", " + indirizzo + ", " + telefono;
     }
 
     public long getID() {

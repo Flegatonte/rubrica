@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="e90d759e-3852-4fb4-8aa4-26be46e73eb9" name="Changes" comment="Persona and Rubrica classes created">
+=======
+    <list default="true" id="e90d759e-3852-4fb4-8aa4-26be46e73eb9" name="Changes" comment="vistaPrincipale created">
+      <change afterPath="$PROJECT_DIR$/src/main/java/rubrica/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rubrica/view/VistaPrincipale.java" afterDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/model/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/model/Persona.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/model/Rubrica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/model/Rubrica.java" afterDir="false" />
@@ -45,6 +51,18 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
 }</component>
+<<<<<<< Updated upstream
+=======
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="rubrica.Main" />
+      <module name="rubrica" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+>>>>>>> Stashed changes
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -84,7 +102,12 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
+<<<<<<< Updated upstream
     <MESSAGE value="Persona and Rubrica classes created" />
     <option name="LAST_COMMIT_MESSAGE" value="Persona and Rubrica classes created" />
+=======
+    <MESSAGE value="vistaPrincipale created" />
+    <option name="LAST_COMMIT_MESSAGE" value="vistaPrincipale created" />
+>>>>>>> Stashed changes
   </component>
 </project>
