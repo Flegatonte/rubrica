@@ -140,42 +140,18 @@ public class EditorPersona extends JFrame {
         return annullaButton;
     }
 
-    public void setNome(JTextField nomeField) {
-        this.nomeField = nomeField;
-    }
-
-    public void setCognome(JTextField cognomeField) {
-        this.cognomeField = cognomeField;
-    }
-
-    public void setIndirizzo(JTextField indirizzoField) {
-        this.indirizzoField = indirizzoField;
-    }
-
-    public void setTelefono(JTextField telefonoField) {
-        this.telefonoField = telefonoField;
-    }
-
-    public void setEta(JTextField etaField) {
-        this.etaField = etaField;
-    }
-
-    // Metodo per ottenere la persona modificata senza gestire l'ID
-    public Persona getPersonaModificata() {
+    // Metodo per ottenere la persona modificata includendo l'ID
+    public Persona getPersonaModificata(long id) {
         try {
-            // Converte l'età da stringa a intero
             int eta = Integer.parseInt(getEta());
-
-            // Ritorna una nuova persona con i dati aggiornati
             return new Persona(
-                    getNome(),        // nome da JTextField (stringa)
-                    getCognome(),     // cognome da JTextField (stringa)
-                    getIndirizzo(),   // indirizzo da JTextField (stringa)
-                    getTelefono(),    // telefono da JTextField (stringa)
-                    eta               // età convertita da stringa a intero
+                    getNome(),
+                    getCognome(),
+                    getIndirizzo(),
+                    getTelefono(),
+                    eta
             );
         } catch (NumberFormatException e) {
-            // Gestisci l'errore nel caso di inserimento non valido per l'età
             JOptionPane.showMessageDialog(this, "Errore: età non valida. Inserisci un numero intero.");
             return null;
         }

@@ -1,4 +1,4 @@
-CREATE DATABASE rubrica_db;
+CREATE DATABASE IF NOT EXISTS rubrica_db;
 
 USE rubrica_db;
 

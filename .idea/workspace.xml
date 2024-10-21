@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e90d759e-3852-4fb4-8aa4-26be46e73eb9" name="Changes" comment="controllers completed" />
+    <list default="true" id="e90d759e-3852-4fb4-8aa4-26be46e73eb9" name="Changes" comment="database connection tested">
+      <change afterPath="$PROJECT_DIR$/src/main/java/rubrica/persistance/PersonaDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rubrica/service/PersonaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rubrica/utils/PersonaDuplicataException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/controller/RubricaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/controller/RubricaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/model/Rubrica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/model/Rubrica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/persistance/RubricaPersistenzaDB.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/view/EditorPersona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/view/EditorPersona.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/view/VistaPrincipale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/view/VistaPrincipale.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/schema_db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/schema_db.sql" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +53,7 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.TestDBConnection">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="rubrica.Main" />
       <module name="rubrica" />
@@ -103,7 +115,14 @@
       <option name="project" value="LOCAL" />
       <updated>1729495838161</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="database connection tested">
+      <created>1729501303456</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1729501303456</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -121,6 +140,7 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="vistaPrincipale created" />
     <MESSAGE value="controllers completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="controllers completed" />
+    <MESSAGE value="database connection tested" />
+    <option name="LAST_COMMIT_MESSAGE" value="database connection tested" />
   </component>
 </project>

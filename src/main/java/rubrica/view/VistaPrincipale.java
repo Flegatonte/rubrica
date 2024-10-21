@@ -1,7 +1,6 @@
 package rubrica.view;
 
 import rubrica.model.Persona;
-import rubrica.model.Rubrica;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,10 +15,8 @@ public class VistaPrincipale extends JFrame {
     private final JButton bottoneElimina;
     private final JList<Persona> listaPersone;
     private final DefaultListModel<Persona> modelloLista;
-    private Rubrica rubrica;
 
-    public VistaPrincipale(Rubrica rubrica) {
-        this.rubrica = rubrica;
+    public VistaPrincipale() {
         setTitle("Rubrica");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,18 +51,17 @@ public class VistaPrincipale extends JFrame {
         add(pannelloRicerca, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
         add(pannelloBottoni, BorderLayout.SOUTH);
-
     }
 
-
-    public void aggiornaLista(Rubrica rubrica) {
+    // Metodo per aggiornare la lista delle persone
+    public void aggiornaLista(Iterable<Persona> persone) {
         modelloLista.clear();
-        for (Persona persona : rubrica.getRubrica()) {
+        for (Persona persona : persone) {
             modelloLista.addElement(persona);
         }
     }
 
-    // Metodi per ottenere i componenti (getter) e per aggiornare la lista
+    // Metodi per ottenere i componenti (getter)
     public JTextField getCampoRicerca() {
         return campoRicerca;
     }
