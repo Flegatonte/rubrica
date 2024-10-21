@@ -1,5 +1,6 @@
 package rubrica; // o rubrica.application
 
+import rubrica.controller.RubricaController;
 import rubrica.model.Persona;
 import rubrica.model.Rubrica;
 import rubrica.view.VistaPrincipale;
@@ -15,6 +16,8 @@ public class Main {
         SwingUtilities.invokeLater(() -> {
             VistaPrincipale vista = new VistaPrincipale(rubrica);
             vista.aggiornaLista(rubrica);
+            RubricaController controller = new RubricaController(rubrica, vista);
+
             vista.setVisible(true);
         });
     }

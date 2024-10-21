@@ -34,13 +34,21 @@ public class Rubrica {
         return null;
     }
 
-    public void modificaPersona(Persona p) {
-        rimuoviPersona(p.getID());
-        rubrica.add(p);
+    public void modificaPersona(Persona personaModificata) {
+        for (Persona persona : rubrica) {
+            if (persona.getID() == personaModificata.getID()) {
+                persona.setNome(personaModificata.getNome());
+                persona.setCognome(personaModificata.getCognome());
+                persona.setIndirizzo(personaModificata.getIndirizzo());
+                persona.setTelefono(personaModificata.getTelefono());
+                persona.setEta(personaModificata.getEta());
+                break;
+            }
+        }
     }
 
-    public void rimuoviPersona(long id) {
-        rubrica.removeIf(p -> p.getID() == (id));
+    public void rimuoviPersona(Persona personaDaEliminare) {
+        rubrica.removeIf(p -> p.getID() == (personaDaEliminare.getID()));
     }
 
     public void stampaPersone() {
