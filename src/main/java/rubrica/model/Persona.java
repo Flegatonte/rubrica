@@ -19,7 +19,7 @@ public class Persona {
     }
 
     // Costruttore con ID (usato per il recupero)
-    public Persona(long id, String nome, String cognome, String indirizzo, String telefono, int eta) {
+    public Persona(String nome, String cognome, String indirizzo, String telefono, int eta, long id) {
         this.id = id;
         this.nome = nome;
         this.cognome = cognome;

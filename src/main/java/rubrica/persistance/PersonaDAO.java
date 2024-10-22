@@ -25,7 +25,7 @@ public class PersonaDAO {
                     String indirizzo = resultSet.getString("indirizzo");
                     String telefono = resultSet.getString("telefono");
                     int eta = resultSet.getInt("eta");
-                    persona = new Persona(nome, cognome, indirizzo, telefono, eta);
+                    persona = new Persona(nome, cognome, indirizzo, telefono, eta, id);
                 }
             }
         } catch (SQLException e) {
@@ -97,7 +97,8 @@ public class PersonaDAO {
                         resultSet.getString("cognome"),
                         resultSet.getString("indirizzo"),
                         resultSet.getString("telefono"),
-                        resultSet.getInt("eta")
+                        resultSet.getInt("eta"),
+                        resultSet.getLong("id")
                 );
                 persone.add(persona);
             }

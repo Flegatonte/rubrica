@@ -98,8 +98,10 @@ public class RubricaController {
             int selectedIndex = view.getListaPersone().getSelectedIndex();
             if (selectedIndex != -1) {
                 Persona personaSelezionata = view.getModelloLista().getElementAt(selectedIndex);
+                System.out.println("id personaSelezionata:" + personaSelezionata.getID());
                 Persona personaDaModificare = personaService.cercaPersonaPerID(personaSelezionata.getID());
 
+                System.out.println("id persona da modificare:" + personaDaModificare.getID());
                 EditorPersona editor = new EditorPersona(personaDaModificare);
                 editor.setVisible(true);
 

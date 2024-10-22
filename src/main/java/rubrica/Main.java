@@ -26,7 +26,7 @@ public class Main {
 
             // Crea una persona da aggiungere
             Persona persona = new Persona("Gloria", "Fiammengo",
-                    "Via Moglianese 338, Peseggia", "+39 3491861346", 27);
+                    "Via Moglianese 338, Peseggia", "+39 3491861346", 27, 0);
 
             PersonaDAO personaDAO = new PersonaDAO(connection);
             PersonaService personaService = new PersonaService(personaDAO); // Inizializza il servizio
