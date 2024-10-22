@@ -31,7 +31,7 @@ public class Main {
             PersonaDAO personaDAO = new PersonaDAO(connection);
             PersonaService personaService = new PersonaService(personaDAO); // Inizializza il servizio
             SwingUtilities.invokeLater(() -> {
-                VistaPrincipale vista = new VistaPrincipale();
+                VistaPrincipale vista = new VistaPrincipale(personaService);
                 vista.getModelloLista().addElement(persona);
                 RubricaController controller = new RubricaController(personaService, vista);
                 vista.setVisible(true);
@@ -40,6 +40,8 @@ public class Main {
             System.out.println("Errore nella connessione a MariaDB.");
             e.printStackTrace();
         }
+
+
 
     }
 }

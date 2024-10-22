@@ -151,16 +151,42 @@ public class RubricaController {
         @Override
         public void actionPerformed(ActionEvent e) {
             int selectedIndex = view.getListaPersone().getSelectedIndex();
+
+            // Verifica se è stata selezionata una persona
             if (selectedIndex != -1) {
                 Persona personaSelezionata = view.getModelloLista().getElementAt(selectedIndex);
-                personaService.rimuoviPersona(personaSelezionata);
+                String nomeCompleto = personaSelezionata.getNome() + " " + personaSelezionata.getCognome();
 
-                view.getModelloLista().remove(selectedIndex);
+                // Mostra una finestra di conferma prima di eliminare
+                int conferma = JOptionPane.showConfirmDialog(
+                        view,
+                        "Eliminare la persona " + nomeCompleto + "?",
+                        "Conferma Eliminazione",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE
+                );
+
+                // Se l'utente conferma (preme "Si")
+                if (conferma == JOptionPane.YES_OPTION) {
+                    System.out.println("Rimozione della persona con ID: " + personaSelezionata.getID());
+                    personaService.rimuoviPersona(personaSelezionata);
+
+                    // Aggiorna la lista rimuovendo la persona
+                    view.getModelloLista().remove(selectedIndex);
+                }
+                // Se l'utente preme "No", non accade nulla
             } else {
-                JOptionPane.showMessageDialog(view, "Seleziona una persona da eliminare.", "Errore", JOptionPane.ERROR_MESSAGE);
+                // Mostra un messaggio di errore se nessuna persona è selezionata
+                JOptionPane.showMessageDialog(
+                        view,
+                        "Seleziona una persona da eliminare.",
+                        "Errore",
+                        JOptionPane.ERROR_MESSAGE
+                );
             }
         }
     }
+
 
     private boolean isValidPhoneNumber(String phoneNumber) {
         return phoneNumber.matches("\\+?[0-9 ]+");

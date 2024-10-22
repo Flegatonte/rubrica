@@ -4,18 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e90d759e-3852-4fb4-8aa4-26be46e73eb9" name="Changes" comment="database connection tested">
-      <change afterPath="$PROJECT_DIR$/src/main/java/rubrica/persistance/PersonaDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/rubrica/service/PersonaService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/rubrica/utils/PersonaDuplicataException.java" afterDir="false" />
+    <list default="true" id="e90d759e-3852-4fb4-8aa4-26be46e73eb9" name="Changes" comment="persistance with database - autoincrement id managed by db added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/controller/RubricaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/controller/RubricaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/model/Rubrica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/model/Rubrica.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/persistance/RubricaPersistenzaDB.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/view/EditorPersona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/view/EditorPersona.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/model/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/model/Persona.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/persistance/PersonaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/persistance/PersonaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/service/PersonaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/service/PersonaService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/view/VistaPrincipale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/view/VistaPrincipale.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/schema_db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/schema_db.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +118,14 @@
       <option name="project" value="LOCAL" />
       <updated>1729501303456</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="persistance with database - improvements added">
+      <created>1729513661736</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1729513661736</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -141,6 +144,8 @@
     <MESSAGE value="vistaPrincipale created" />
     <MESSAGE value="controllers completed" />
     <MESSAGE value="database connection tested" />
-    <option name="LAST_COMMIT_MESSAGE" value="database connection tested" />
+    <MESSAGE value="persistance with database - improvements added" />
+    <MESSAGE value="persistance with database - autoincrement id managed by db added" />
+    <option name="LAST_COMMIT_MESSAGE" value="persistance with database - autoincrement id managed by db added" />
   </component>
 </project>

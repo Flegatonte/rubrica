@@ -24,6 +24,10 @@ public class PersonaService {
         return personaDAO.cercaPersonaPerID(id);
     }
 
+    public List<Persona> recuperaTutteLePersone() {
+        return personaDAO.recuperaTutteLePersone();
+    }
+
     public void modificaPersona(Persona persona) throws PersonaDuplicataException {
         if (isDuplicatoModifica(persona)) {
             throw new PersonaDuplicataException("Persona già esistente!");
@@ -36,7 +40,7 @@ public class PersonaService {
     }
 
     private boolean isDuplicato(Persona persona) {
-        List<Persona> persone = personaDAO.getAllPersone();
+        List<Persona> persone = personaDAO.recuperaTutteLePersone();
         for (Persona p : persone) {
             if (p.getNome().equals(persona.getNome()) &&
                     p.getCognome().equals(persona.getCognome()) &&
@@ -48,7 +52,7 @@ public class PersonaService {
     }
 
     private boolean isDuplicatoModifica(Persona persona) {
-        List<Persona> persone = personaDAO.getAllPersone(); // Ottieni tutte le persone dal database
+        List<Persona> persone = personaDAO.recuperaTutteLePersone(); // Ottieni tutte le persone dal database
         for (Persona p : persone) {
             // Controlla se nome, cognome e telefono sono gli stessi e se non è la stessa persona
             if (p.getNome().equals(persona.getNome()) &&

@@ -29,24 +29,36 @@ public class PersonaDAO {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // Gestione delle eccezioni
+            e.printStackTrace();
         }
         return persona;
     }
 
     public void aggiungiPersona(Persona persona) {
-        String sql = "INSERT INTO persone (nome, cognome, indirizzo, telefono, eta) VALUES (?, ?, ?, ?, ?)";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        String query = "INSERT INTO persone (nome, cognome, indirizzo, telefono, eta) VALUES (?, ?, ?, ?, ?)";
+
+        try (
+             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) { // Ottieni le chiavi generate
             statement.setString(1, persona.getNome());
             statement.setString(2, persona.getCognome());
             statement.setString(3, persona.getIndirizzo());
             statement.setString(4, persona.getTelefono());
             statement.setInt(5, persona.getEta());
             statement.executeUpdate();
+
+            // Ottieni l'ID generato
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    long id = generatedKeys.getLong(1);
+                    System.out.println("ID generato:" + id);
+                    persona.setID(id);
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 
     public void modificaPersona(Persona persona) {
         String sql = "UPDATE persone SET nome = ?, cognome = ?, indirizzo = ?, telefono = ?, eta = ? WHERE id = ?";
@@ -56,7 +68,7 @@ public class PersonaDAO {
             statement.setString(3, persona.getIndirizzo());
             statement.setString(4, persona.getTelefono());
             statement.setInt(5, persona.getEta());
-            statement.setLong(6, persona.getID()); // Assicurati che l'ID sia gestito correttamente
+            statement.setLong(6, persona.getID());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -65,6 +77,7 @@ public class PersonaDAO {
 
     public void rimuoviPersona(Persona persona) {
         String sql = "DELETE FROM persone WHERE id = ?";
+        System.out.println(persona.getID());
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, persona.getID());
             statement.executeUpdate();
@@ -73,7 +86,7 @@ public class PersonaDAO {
         }
     }
 
-    public List<Persona> getAllPersone() {
+    public List<Persona> recuperaTutteLePersone() {
         List<Persona> persone = new ArrayList<>();
         String sql = "SELECT * FROM persone";
         try (Statement statement = connection.createStatement();
@@ -86,7 +99,6 @@ public class PersonaDAO {
                         resultSet.getString("telefono"),
                         resultSet.getInt("eta")
                 );
-                // Assicurati di gestire l'ID se necessario
                 persone.add(persona);
             }
         } catch (SQLException e) {

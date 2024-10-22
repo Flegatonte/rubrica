@@ -1,12 +1,12 @@
 package rubrica.view;
 
 import rubrica.model.Persona;
+import rubrica.service.PersonaService; // Assicurati di importare il servizio
 
 import javax.swing.*;
 import java.awt.*;
 
 public class VistaPrincipale extends JFrame {
-
     private final JTextField campoRicerca;
     private final JComboBox<String> filtroEta;
     private final JButton bottoneRicerca;
@@ -15,8 +15,12 @@ public class VistaPrincipale extends JFrame {
     private final JButton bottoneElimina;
     private final JList<Persona> listaPersone;
     private final DefaultListModel<Persona> modelloLista;
+    private final PersonaService personaService; // Campo per il servizio
 
-    public VistaPrincipale() {
+    // Modifica il costruttore per accettare un PersonaService
+    public VistaPrincipale(PersonaService personaService) {
+        this.personaService = personaService; // Inizializza il servizio
+
         setTitle("Rubrica");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,6 +55,15 @@ public class VistaPrincipale extends JFrame {
         add(pannelloRicerca, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
         add(pannelloBottoni, BorderLayout.SOUTH);
+
+        // Carica le persone dal database al caricamento della finestra
+        caricaPersoneDalDatabase();
+    }
+
+    // Metodo per caricare le persone dal database
+    private void caricaPersoneDalDatabase() {
+        Iterable<Persona> persone = personaService.recuperaTutteLePersone();
+        aggiornaLista(persone);
     }
 
     // Metodo per aggiornare la lista delle persone

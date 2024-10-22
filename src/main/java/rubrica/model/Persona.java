@@ -1,8 +1,7 @@
 package rubrica.model;
 
 public class Persona {
-    private final long id;
-    private static int idCounter = 0;
+    private long id; // ID della persona, assegnato dal database
 
     private String nome;
     private String cognome;
@@ -10,8 +9,18 @@ public class Persona {
     private String telefono;
     private int eta;
 
+    // Costruttore senza ID (usato per l'aggiunta)
     public Persona(String nome, String cognome, String indirizzo, String telefono, int eta) {
-        this.id = idCounter++;
+        this.nome = nome;
+        this.cognome = cognome;
+        this.indirizzo = indirizzo;
+        this.telefono = telefono;
+        this.eta = eta;
+    }
+
+    // Costruttore con ID (usato per il recupero)
+    public Persona(long id, String nome, String cognome, String indirizzo, String telefono, int eta) {
+        this.id = id;
         this.nome = nome;
         this.cognome = cognome;
         this.indirizzo = indirizzo;
@@ -39,6 +48,11 @@ public class Persona {
 
     public long getID() {
         return id;
+    }
+
+    // Setter per l'ID
+    public void setID(long id) {
+        this.id = id;
     }
 
     public String getNome() {
