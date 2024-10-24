@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e90d759e-3852-4fb4-8aa4-26be46e73eb9" name="Changes" comment="persistance with database - id issues fixed">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/controller/RubricaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/controller/RubricaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/view/VistaPrincipale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/view/VistaPrincipale.java" afterDir="false" />
-    </list>
+    <list default="true" id="e90d759e-3852-4fb4-8aa4-26be46e73eb9" name="Changes" comment="persistance with database - id issues fixed" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
