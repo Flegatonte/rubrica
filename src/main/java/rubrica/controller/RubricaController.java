@@ -7,34 +7,31 @@ import rubrica.view.EditorPersona;
 import rubrica.view.VistaPrincipale;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Vector;
 
 public class RubricaController {
-    private PersonaService personaService;
-    private VistaPrincipale view;
+    private final PersonaService personaService;
+    private final VistaPrincipale view;
 
     public RubricaController(PersonaService personaService, VistaPrincipale view) {
         this.personaService = personaService;
         this.view = view;
 
-        this.view.getListaPersone().addMouseListener(new MouseAdapter() {
-            int lastSelectedIndex = -1;
-
+        // Listener per selezionare la riga nella tabella
+        this.view.getTabellaPersone().getParent().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                JList<Persona> list = view.getListaPersone();
-                int index = list.locationToIndex(e.getPoint());
+                int row = view.getTabellaPersone().rowAtPoint(e.getPoint());
+                System.out.println(row);
 
-                if (index != -1 && index == lastSelectedIndex) {
-                    list.clearSelection();
-                    lastSelectedIndex = -1;
-                } else {
-                    lastSelectedIndex = list.getSelectedIndex();
+                // Se non viene cliccata nessuna riga, deseleziona tutte le righe
+                if (row == -1) {
+                    view.getTabellaPersone().clearSelection();
+                    view.getTabellaPersone().repaint();
                 }
             }
         });
@@ -42,6 +39,7 @@ public class RubricaController {
         this.view.getBottoneAggiungi().addActionListener(new NuovaPersonaListener());
         this.view.getBottoneModifica().addActionListener(new ModificaPersonaListener());
         this.view.getBottoneElimina().addActionListener(new EliminaPersonaListener());
+        this.view.getBottoneRicerca().addActionListener(new RicercaPersonaListener());
     }
 
     // Listener per aggiungere una nuova persona
@@ -79,11 +77,11 @@ public class RubricaController {
                 Persona nuovaPersona = new Persona(nome, cognome, indirizzo, telefono, eta);
                 try {
                     personaService.aggiungiPersona(nuovaPersona);
+                    view.getModelloTabella().addRow(new Object[]{nome, cognome, indirizzo, telefono, eta});
                 } catch (PersonaDuplicataException ex) {
                     throw new RuntimeException(ex);
                 }
 
-                view.getModelloLista().addElement(nuovaPersona);
                 editor.dispose();
             });
 
@@ -95,49 +93,55 @@ public class RubricaController {
     class ModificaPersonaListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            int selectedIndex = view.getListaPersone().getSelectedIndex();
-            if (selectedIndex != -1) {
-                Persona personaSelezionata = view.getModelloLista().getElementAt(selectedIndex);
-                System.out.println("id personaSelezionata:" + personaSelezionata.getID());
-                Persona personaDaModificare = personaService.cercaPersonaPerID(personaSelezionata.getID());
+            int selectedRow = view.getTabellaPersone().getSelectedRow();
+            if (selectedRow != -1) {
 
-                System.out.println("id persona da modificare:" + personaDaModificare.getID());
+                // Creare un oggetto Persona da modificare
+                Persona personaDaModificare = getPersonaFromTable(selectedRow);
                 EditorPersona editor = new EditorPersona(personaDaModificare);
                 editor.setVisible(true);
 
                 editor.getSalvaButton().addActionListener(event -> {
-                    String nome = editor.getNome();
-                    String cognome = editor.getCognome();
-                    String indirizzo = editor.getIndirizzo();
-                    String telefono = editor.getTelefono();
-                    String etaString = editor.getEta();
+                    // Raccogliere i dati dal form
+                    String nuovoNome = editor.getNome();
+                    String nuovoCognome = editor.getCognome();
+                    String nuovoIndirizzo = editor.getIndirizzo();
+                    String nuovoTelefono = editor.getTelefono();
+                    String nuovaEtaString = editor.getEta();
 
-                    if (nome.isEmpty() || cognome.isEmpty() || indirizzo.isEmpty() || telefono.isEmpty() || etaString.isEmpty()) {
+                    if (nuovoNome.isEmpty() || nuovoCognome.isEmpty() || nuovoIndirizzo.isEmpty() || nuovoTelefono.isEmpty() || nuovaEtaString.isEmpty()) {
                         JOptionPane.showMessageDialog(editor, "Tutti i campi devono essere compilati.", "Errore", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
 
-                    int eta;
+                    int nuovaEta;
                     try {
-                        eta = Integer.parseInt(etaString);
+                        nuovaEta = Integer.parseInt(nuovaEtaString);
                     } catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(editor, "L'età deve essere un numero valido.", "Errore", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
 
-                    if (!isValidPhoneNumber(telefono)) {
+                    if (!isValidPhoneNumber(nuovoTelefono)) {
                         JOptionPane.showMessageDialog(editor, "Il numero di telefono non è valido.", "Errore", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
 
-                    Persona personaModificata = new Persona(nome, cognome, indirizzo, telefono, eta);
+                    // Creare una nuova persona con i dati aggiornati
+                    Persona personaModificata = new Persona(nuovoNome, nuovoCognome, nuovoIndirizzo, nuovoTelefono,
+                            nuovaEta, personaDaModificare.getID());
                     try {
-                        personaService.modificaPersona(personaModificata);
+                        personaService.modificaPersona(personaModificata); // Assicurati che questo metodo gestisca anche l'ID
+                        // Aggiorna il modello della tabella
+                        view.getModelloTabella().setValueAt(nuovoNome, selectedRow, 0);
+                        view.getModelloTabella().setValueAt(nuovoCognome, selectedRow, 1);
+                        view.getModelloTabella().setValueAt(nuovoIndirizzo, selectedRow, 2);
+                        view.getModelloTabella().setValueAt(nuovoTelefono, selectedRow, 3);
+                        view.getModelloTabella().setValueAt(nuovaEta, selectedRow, 4);
                     } catch (PersonaDuplicataException ex) {
-                        throw new RuntimeException(ex);
+                        JOptionPane.showMessageDialog(editor, "Persona già esistente.", "Errore", JOptionPane.ERROR_MESSAGE);
                     }
 
-                    view.getModelloLista().setElementAt(personaModificata, selectedIndex);
                     editor.dispose();
                 });
 
@@ -152,14 +156,11 @@ public class RubricaController {
     class EliminaPersonaListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            int selectedIndex = view.getListaPersone().getSelectedIndex();
+            int selectedRow = view.getTabellaPersone().getSelectedRow();
+            if (selectedRow != -1) {
+                String nomeCompleto = view.getModelloTabella().getValueAt(selectedRow, 0) + " " +
+                        view.getModelloTabella().getValueAt(selectedRow, 1);
 
-            // Verifica se è stata selezionata una persona
-            if (selectedIndex != -1) {
-                Persona personaSelezionata = view.getModelloLista().getElementAt(selectedIndex);
-                String nomeCompleto = personaSelezionata.getNome() + " " + personaSelezionata.getCognome();
-
-                // Mostra una finestra di conferma prima di eliminare
                 int conferma = JOptionPane.showConfirmDialog(
                         view,
                         "Eliminare la persona " + nomeCompleto + "?",
@@ -168,29 +169,75 @@ public class RubricaController {
                         JOptionPane.WARNING_MESSAGE
                 );
 
-                // Se l'utente conferma (preme "Si")
                 if (conferma == JOptionPane.YES_OPTION) {
-                    System.out.println("Rimozione della persona con ID: " + personaSelezionata.getID());
-                    personaService.rimuoviPersona(personaSelezionata);
-
-                    // Aggiorna la lista rimuovendo la persona
-                    view.getModelloLista().remove(selectedIndex);
+                    personaService.rimuoviPersona(getPersonaFromTable(selectedRow));
                 }
-                // Se l'utente preme "No", non accade nulla
             } else {
-                // Mostra un messaggio di errore se nessuna persona è selezionata
-                JOptionPane.showMessageDialog(
-                        view,
-                        "Seleziona una persona da eliminare.",
-                        "Errore",
-                        JOptionPane.ERROR_MESSAGE
-                );
+                JOptionPane.showMessageDialog(view, "Seleziona una persona da eliminare.", "Errore", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
 
+    // Listener per cercare una persona
+    class RicercaPersonaListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String nomeRicerca = view.getCampoRicerca().getText().trim().toLowerCase(); // Ottieni il testo di ricerca in minuscolo e rimuovi eventuali spazi
+
+            // Se il campo di ricerca è vuoto, mostra la lista completa
+            if (nomeRicerca.isEmpty()) {
+                // Recupera tutte le persone e aggiorna la tabella
+                view.aggiornaTabella(new Vector<>(personaService.recuperaTutteLePersone()));
+                return;
+            }
+
+            Iterable<Persona> persone = personaService.recuperaTutteLePersone(); // Recupera tutte le persone
+            Vector<Persona> personeTrovate = new Vector<>(); // Lista per le persone trovate
+
+            // Filtra le persone in base al nome o cognome
+            for (Persona persona : persone) {
+                String nomeCompleto = (persona.getNome() + " " + persona.getCognome()).toLowerCase(); // Unisci nome e cognome per la ricerca
+                if (persona.getNome().toLowerCase().contains(nomeRicerca) ||
+                        persona.getCognome().toLowerCase().contains(nomeRicerca) ||
+                        nomeCompleto.contains(nomeRicerca)) {
+                    personeTrovate.add(persona);
+                }
+            }
+
+            // Aggiorna la tabella con le persone trovate
+            view.aggiornaTabella(personeTrovate);
+        }
+    }
+
+
+    private Persona getPersonaFromTable(int selectedRow) {
+        String nome = view.getModelloTabella().getValueAt(selectedRow, 0).toString();
+        String cognome = view.getModelloTabella().getValueAt(selectedRow, 1).toString();
+        String indirizzo = view.getModelloTabella().getValueAt(selectedRow, 2).toString();
+        String telefono = view.getModelloTabella().getValueAt(selectedRow, 3).toString();
+        int eta = Integer.parseInt(view.getModelloTabella().getValueAt(selectedRow, 4).toString());
+        long id = Long.parseLong(view.getModelloTabella().getValueAt(selectedRow, 5).toString());
+
+        return new Persona(nome, cognome, indirizzo, telefono, eta, id);
+    }
+
 
     private boolean isValidPhoneNumber(String phoneNumber) {
-        return phoneNumber.matches("\\+?[0-9 ]+");
+        // Rimuove spazi e trattini, se presenti
+        phoneNumber = phoneNumber.replaceAll("\\s+", "").replaceAll("-", "");
+
+        // Controlla che il numero inizi con "+" (facoltativo) o cifre
+        if (!phoneNumber.matches("^\\+?[0-9]+$")) {
+            return false; // Il numero contiene caratteri non validi
+        }
+
+        // Verifica che la lunghezza sia tra 10 e 15 cifre (numeri di telefono tipici)
+        int length = phoneNumber.startsWith("+") ? phoneNumber.length() - 1 : phoneNumber.length();
+        if (length < 10 || length > 15) {
+            return false; // Il numero è troppo corto o troppo lungo
+        }
+
+        return true; // Il numero è valido
     }
+
 }

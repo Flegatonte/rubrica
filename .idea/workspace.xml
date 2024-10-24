@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e90d759e-3852-4fb4-8aa4-26be46e73eb9" name="Changes" comment="persistance with database - autoincrement id managed by db added">
+    <list default="true" id="e90d759e-3852-4fb4-8aa4-26be46e73eb9" name="Changes" comment="persistance with database - id issues fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/controller/RubricaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/controller/RubricaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/model/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/model/Persona.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/persistance/PersonaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/persistance/PersonaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/view/VistaPrincipale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/view/VistaPrincipale.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +129,14 @@
       <option name="project" value="LOCAL" />
       <updated>1729595463363</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="persistance with database - id issues fixed">
+      <created>1729597790603</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1729597790603</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -151,6 +157,7 @@
     <MESSAGE value="database connection tested" />
     <MESSAGE value="persistance with database - improvements added" />
     <MESSAGE value="persistance with database - autoincrement id managed by db added" />
-    <option name="LAST_COMMIT_MESSAGE" value="persistance with database - autoincrement id managed by db added" />
+    <MESSAGE value="persistance with database - id issues fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="persistance with database - id issues fixed" />
   </component>
 </project>

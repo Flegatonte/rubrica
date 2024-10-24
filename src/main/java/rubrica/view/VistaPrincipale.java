@@ -4,18 +4,23 @@ import rubrica.model.Persona;
 import rubrica.service.PersonaService; // Assicurati di importare il servizio
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Vector;
 
 public class VistaPrincipale extends JFrame {
     private final JTextField campoRicerca;
-    private final JComboBox<String> filtroEta;
     private final JButton bottoneRicerca;
     private final JButton bottoneAggiungi;
     private final JButton bottoneModifica;
     private final JButton bottoneElimina;
-    private final JList<Persona> listaPersone;
-    private final DefaultListModel<Persona> modelloLista;
+    private final JTable tabellaPersone;
+    private final DefaultTableModel modelloTabella; // Modello della tabella
     private final PersonaService personaService; // Campo per il servizio
+
 
     // Modifica il costruttore per accettare un PersonaService
     public VistaPrincipale(PersonaService personaService) {
@@ -28,12 +33,23 @@ public class VistaPrincipale extends JFrame {
         setLayout(new BorderLayout());
 
         // Inizializzazione dei componenti
-        modelloLista = new DefaultListModel<>();
-        listaPersone = new JList<>(modelloLista);
-        JScrollPane scrollPane = new JScrollPane(listaPersone);
+        modelloTabella = new DefaultTableModel(new Object[]{"Nome", "Cognome", "Indirizzo", "Telefono", "Età", "ID"}, 0);
+        tabellaPersone = new JTable(modelloTabella);
+        JScrollPane scrollPane = new JScrollPane(tabellaPersone);
+
+        tabellaPersone.getColumnModel().getColumn(2).setMinWidth(0);
+        tabellaPersone.getColumnModel().getColumn(2).setMaxWidth(0);
+        tabellaPersone.getColumnModel().getColumn(2).setPreferredWidth(0);
+
+        tabellaPersone.getColumnModel().getColumn(4).setMinWidth(0);
+        tabellaPersone.getColumnModel().getColumn(4).setMaxWidth(0);
+        tabellaPersone.getColumnModel().getColumn(4).setPreferredWidth(0);
+
+        tabellaPersone.getColumnModel().getColumn(5).setMinWidth(0);
+        tabellaPersone.getColumnModel().getColumn(5).setMaxWidth(0);
+        tabellaPersone.getColumnModel().getColumn(5).setPreferredWidth(0);
 
         campoRicerca = new JTextField(15);
-        filtroEta = new JComboBox<>(new String[]{"Tutti", "0-20", "21-40", "41-60", "61+"});
         bottoneRicerca = new JButton("Cerca");
         bottoneAggiungi = new JButton("Aggiungi");
         bottoneModifica = new JButton("Modifica");
@@ -42,7 +58,6 @@ public class VistaPrincipale extends JFrame {
         // Pannello per la ricerca
         JPanel pannelloRicerca = new JPanel();
         pannelloRicerca.add(campoRicerca);
-        pannelloRicerca.add(filtroEta);
         pannelloRicerca.add(bottoneRicerca);
 
         // Pannello dei pulsanti
@@ -63,24 +78,21 @@ public class VistaPrincipale extends JFrame {
     // Metodo per caricare le persone dal database
     private void caricaPersoneDalDatabase() {
         Iterable<Persona> persone = personaService.recuperaTutteLePersone();
-        aggiornaLista(persone);
+        aggiornaTabella(persone);
     }
 
-    // Metodo per aggiornare la lista delle persone
-    public void aggiornaLista(Iterable<Persona> persone) {
-        modelloLista.clear();
+    // Metodo per aggiornare la tabella delle persone
+    public void aggiornaTabella(Iterable<Persona> persone) {
+        modelloTabella.setRowCount(0); // Pulisce la tabella
         for (Persona persona : persone) {
-            modelloLista.addElement(persona);
+            modelloTabella.addRow(new Object[]{persona.getNome(), persona.getCognome(), persona.getIndirizzo(),
+                    persona.getTelefono(), persona.getEta(), persona.getID()}); // Aggiungi una riga
         }
     }
 
     // Metodi per ottenere i componenti (getter)
     public JTextField getCampoRicerca() {
         return campoRicerca;
-    }
-
-    public JComboBox<String> getFiltroEta() {
-        return filtroEta;
     }
 
     public JButton getBottoneRicerca() {
@@ -99,11 +111,11 @@ public class VistaPrincipale extends JFrame {
         return bottoneElimina;
     }
 
-    public DefaultListModel<Persona> getModelloLista() {
-        return modelloLista;
+    public DefaultTableModel getModelloTabella() {
+        return modelloTabella;
     }
 
-    public JList<Persona> getListaPersone() {
-        return listaPersone;
+    public JTable getTabellaPersone() {
+        return tabellaPersone;
     }
 }
