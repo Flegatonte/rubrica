@@ -18,7 +18,7 @@ public class Main {
         Properties properties = new Properties();
 
         // Carica le proprietà dal file di configurazione
-        try (InputStream input = Main.class.getClassLoader().getResourceAsStream("config.properties")) {
+        try (InputStream input = Main.class.getClassLoader().getResourceAsStream("credenziali_database.properties")) {
             if (input == null) {
                 System.out.println("Spiacente, impossibile trovare il file di configurazione.");
                 return;

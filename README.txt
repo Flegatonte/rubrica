@@ -5,7 +5,7 @@ Questa applicazione è stata progettata per funzionare principalmente con **Mari
 ## Istruzioni di Installazione
 
 1. Decomprimere l'archivio `Rubrica.zip`.
-2. Aprire il file `config.properties` e sostituire i valori con le credenziali del proprio sistema MariaDB o MySQL:
+2. Aprire il file `credenziali_database.properties` e sostituire i valori con le credenziali del proprio sistema MariaDB o MySQL:
    ```properties
    jdbc.username=root               # Nome utente per l'accesso al database
    jdbc.password=newpassword        # Password per l'accesso al database
