@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e90d759e-3852-4fb4-8aa4-26be46e73eb9" name="Changes" comment="persistance with database - missing commits">
+    <list default="true" id="e90d759e-3852-4fb4-8aa4-26be46e73eb9" name="Changes" comment="id issues fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/controller/RubricaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/controller/RubricaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/model/Rubrica.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/persistance/PersonaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/persistance/PersonaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/service/PersonaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/service/PersonaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/model/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/model/Persona.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/view/EditorPersona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/view/EditorPersona.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/view/VistaPrincipale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/view/VistaPrincipale.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/credenziali_db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +145,21 @@
       <option name="project" value="LOCAL" />
       <updated>1729769220863</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="config file usage added">
+      <created>1729853113303</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1729853113303</updated>
+    </task>
+    <task id="LOCAL-00011" summary="id issues fixed">
+      <created>1729853131235</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1729853131235</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -170,6 +182,8 @@
     <MESSAGE value="persistance with database - autoincrement id managed by db added" />
     <MESSAGE value="persistance with database - id issues fixed" />
     <MESSAGE value="persistance with database - missing commits" />
-    <option name="LAST_COMMIT_MESSAGE" value="persistance with database - missing commits" />
+    <MESSAGE value="config file usage added" />
+    <MESSAGE value="id issues fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="id issues fixed" />
   </component>
 </project>

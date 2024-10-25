@@ -18,29 +18,28 @@ public class VistaPrincipale extends JFrame {
     private final JButton bottoneModifica;
     private final JButton bottoneElimina;
     private final JTable tabellaPersone;
-    private final DefaultTableModel modelloTabella; // Modello della tabella
+    private final DefaultTableModel modelloTabella;
     private final PersonaService personaService; // Campo per il servizio
 
 
-    // Modifica il costruttore per accettare un PersonaService
     public VistaPrincipale(PersonaService personaService) {
         this.personaService = personaService; // Inizializza il servizio
 
         setTitle("Rubrica");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); // Centra la finestra
+        setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        // Inizializzazione dei componenti
         modelloTabella = new DefaultTableModel(new Object[]{"Nome", "Cognome", "Indirizzo", "Telefono", "Età", "ID"}, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Rendi tutte le celle non modificabili
+                return false; // Rende tutte le celle non modificabili
             }
         };        tabellaPersone = new JTable(modelloTabella);
         JScrollPane scrollPane = new JScrollPane(tabellaPersone);
 
+        // Nasconde i campi che non ci interessa visualizzare
         tabellaPersone.getColumnModel().getColumn(2).setMinWidth(0);
         tabellaPersone.getColumnModel().getColumn(2).setMaxWidth(0);
         tabellaPersone.getColumnModel().getColumn(2).setPreferredWidth(0);
@@ -70,7 +69,6 @@ public class VistaPrincipale extends JFrame {
         pannelloBottoni.add(bottoneModifica);
         pannelloBottoni.add(bottoneElimina);
 
-        // Aggiunta dei pannelli alla finestra
         add(pannelloRicerca, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
         add(pannelloBottoni, BorderLayout.SOUTH);
@@ -79,7 +77,6 @@ public class VistaPrincipale extends JFrame {
         caricaPersoneDalDatabase();
     }
 
-    // Metodo per caricare le persone dal database
     private void caricaPersoneDalDatabase() {
         Iterable<Persona> persone = personaService.recuperaTutteLePersone();
         aggiornaTabella(persone);
@@ -89,16 +86,13 @@ public class VistaPrincipale extends JFrame {
         caricaPersoneDalDatabase();
     }
 
-    // Metodo per aggiornare la tabella delle persone
     public void aggiornaTabella(Iterable<Persona> persone) {
         modelloTabella.setRowCount(0); // Pulisce la tabella
         for (Persona persona : persone) {
             modelloTabella.addRow(new Object[]{persona.getNome(), persona.getCognome(), persona.getIndirizzo(),
-                    persona.getTelefono(), persona.getEta(), persona.getID()}); // Aggiungi una riga
+                    persona.getTelefono(), persona.getEta(), persona.getID()});
         }
     }
-
-    // Metodi per ottenere i componenti (getter)
     public JTextField getCampoRicerca() {
         return campoRicerca;
     }

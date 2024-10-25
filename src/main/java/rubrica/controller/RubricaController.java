@@ -30,7 +30,6 @@ public class RubricaController {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int row = view.getTabellaPersone().rowAtPoint(e.getPoint());
-                System.out.println(row);
 
                 // Se non viene cliccata nessuna riga, deseleziona tutte le righe
                 if (row == -1) {
@@ -80,7 +79,7 @@ public class RubricaController {
 
                 Persona nuovaPersona = new Persona(nome, cognome, indirizzo, telefono, eta);
                 try {
-                    // Aggiunge la persona nel database e recupera l'ID generato
+                    // Aggiunge la persona nel database e recupera l'ID generato dal database
                     personaService.aggiungiPersona(nuovaPersona);
 
                     // Dopo aver recuperato l'ID, aggiunge la persona alla tabella con tutti i dati necessari
@@ -90,7 +89,7 @@ public class RubricaController {
                             nuovaPersona.getIndirizzo(),
                             nuovaPersona.getTelefono(),
                             nuovaPersona.getEta(),
-                            nuovaPersona.getID()  // Ora l'ID è disponibile
+                            nuovaPersona.getID()
                     });
 
                 } catch (PersonaDuplicataException ex) {
@@ -112,13 +111,13 @@ public class RubricaController {
             int selectedRow = view.getTabellaPersone().getSelectedRow();
             if (selectedRow != -1) {
 
-                // Creare un oggetto Persona da modificare
+                // Crea un oggetto Persona da modificare
                 Persona personaDaModificare = getPersonaFromTable(selectedRow);
                 EditorPersona editor = new EditorPersona(personaDaModificare);
                 editor.setVisible(true);
 
                 editor.getSalvaButton().addActionListener(event -> {
-                    // Raccogliere i dati dal form
+                    // Raccoglie i dati dal form
                     String nuovoNome = editor.getNome();
                     String nuovoCognome = editor.getCognome();
                     String nuovoIndirizzo = editor.getIndirizzo();
@@ -143,11 +142,11 @@ public class RubricaController {
                         return;
                     }
 
-                    // Creare una nuova persona con i dati aggiornati
+                    // Crea una nuova persona con i dati aggiornati
                     Persona personaModificata = new Persona(nuovoNome, nuovoCognome, nuovoIndirizzo, nuovoTelefono,
                             nuovaEta, personaDaModificare.getID());
                     try {
-                        personaService.modificaPersona(personaModificata); // Assicurati che questo metodo gestisca anche l'ID
+                        personaService.modificaPersona(personaModificata);
                         // Aggiorna il modello della tabella
                         view.getModelloTabella().setValueAt(nuovoNome, selectedRow, 0);
                         view.getModelloTabella().setValueAt(nuovoCognome, selectedRow, 1);
@@ -199,21 +198,20 @@ public class RubricaController {
     class RicercaPersonaListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            String nomeRicerca = view.getCampoRicerca().getText().trim().toLowerCase(); // Ottieni il testo di ricerca in minuscolo e rimuovi eventuali spazi
+            String nomeRicerca = view.getCampoRicerca().getText().trim().toLowerCase();
 
             // Se il campo di ricerca è vuoto, mostra la lista completa
             if (nomeRicerca.isEmpty()) {
-                // Recupera tutte le persone e aggiorna la tabella
                 view.aggiornaTabella(new Vector<>(personaService.recuperaTutteLePersone()));
                 return;
             }
 
-            Iterable<Persona> persone = personaService.recuperaTutteLePersone(); // Recupera tutte le persone
+            Iterable<Persona> persone = personaService.recuperaTutteLePersone();
             Vector<Persona> personeTrovate = new Vector<>(); // Lista per le persone trovate
 
-            // Filtra le persone in base al nome o cognome
+            // Filtra le persone in base sia al nome che al cognome
             for (Persona persona : persone) {
-                String nomeCompleto = (persona.getNome() + " " + persona.getCognome()).toLowerCase(); // Unisci nome e cognome per la ricerca
+                String nomeCompleto = (persona.getNome() + " " + persona.getCognome()).toLowerCase();
                 if (persona.getNome().toLowerCase().contains(nomeRicerca) ||
                         persona.getCognome().toLowerCase().contains(nomeRicerca) ||
                         nomeCompleto.contains(nomeRicerca)) {
@@ -245,16 +243,16 @@ public class RubricaController {
 
         // Controlla che il numero inizi con "+" (facoltativo) o cifre
         if (!phoneNumber.matches("^\\+?[0-9]+$")) {
-            return false; // Il numero contiene caratteri non validi
+            return false;
         }
 
-        // Verifica che la lunghezza sia tra 10 e 15 cifre (numeri di telefono tipici)
+        // Verifica che la lunghezza sia tra 10 e 15 cifre
         int length = phoneNumber.startsWith("+") ? phoneNumber.length() - 1 : phoneNumber.length();
         if (length < 10 || length > 15) {
-            return false; // Il numero è troppo corto o troppo lungo
+            return false;
         }
 
-        return true; // Il numero è valido
+        return true;
     }
 
 }

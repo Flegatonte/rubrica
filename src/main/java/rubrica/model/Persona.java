@@ -2,7 +2,6 @@ package rubrica.model;
 
 public class Persona {
     private long id; // ID della persona, assegnato dal database
-
     private String nome;
     private String cognome;
     private String indirizzo;

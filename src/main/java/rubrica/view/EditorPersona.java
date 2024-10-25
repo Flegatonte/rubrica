@@ -20,7 +20,7 @@ public class EditorPersona extends JFrame {
 
     public EditorPersona(Persona persona) {
         setTitle("Editor Persona");
-        setSize(500, 400);  // Aumenta la dimensione della finestra
+        setSize(500, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -28,11 +28,11 @@ public class EditorPersona extends JFrame {
         // Margine per i bordi
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.anchor = GridBagConstraints.WEST;
-        gbc.fill = GridBagConstraints.HORIZONTAL; // Allarga i campi
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
         // Creazione dei campi e delle etichette
         JLabel nomeLabel = new JLabel("Nome:");
-        nomeField = new JTextField(25); // Campi più larghi
+        nomeField = new JTextField(25);
 
         JLabel cognomeLabel = new JLabel("Cognome:");
         cognomeField = new JTextField(25);
@@ -59,7 +59,6 @@ public class EditorPersona extends JFrame {
         salvaButton = new JButton("Salva");
         annullaButton = new JButton("Annulla");
 
-        // Aggiunta dei componenti al layout
         gbc.gridx = 0;
         gbc.gridy = 0;
         add(nomeLabel, gbc);
@@ -95,12 +94,11 @@ public class EditorPersona extends JFrame {
         gbc.gridx = 1;
         add(etaField, gbc);
 
-        // Aggiunta dei bottoni
         gbc.gridx = 0;
         gbc.gridy = 5;
         gbc.gridwidth = 2;
-        gbc.fill = GridBagConstraints.NONE; // Non estendere i bottoni a tutta la larghezza
-        gbc.anchor = GridBagConstraints.CENTER; // Centra i bottoni
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.CENTER;
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(salvaButton);
@@ -110,7 +108,6 @@ public class EditorPersona extends JFrame {
         setLocationRelativeTo(null); // Centra la finestra sullo schermo
     }
 
-    // Metodi getter per recuperare i valori dai campi
     public String getNome() {
         return nomeField.getText();
     }
@@ -131,7 +128,6 @@ public class EditorPersona extends JFrame {
         return etaField.getText();  // Restituisce il testo inserito, senza convertire direttamente in int
     }
 
-    // Metodi per ottenere i bottoni Salva e Annulla
     public JButton getSalvaButton() {
         return salvaButton;
     }
