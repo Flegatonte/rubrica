@@ -21,6 +21,10 @@ public class RubricaController {
         this.personaService = personaService;
         this.view = view;
 
+        initializeListeners();
+    }
+
+    private void initializeListeners() {
         // Listener per selezionare la riga nella tabella
         this.view.getTabellaPersone().getParent().addMouseListener(new MouseAdapter() {
             @Override
@@ -76,10 +80,21 @@ public class RubricaController {
 
                 Persona nuovaPersona = new Persona(nome, cognome, indirizzo, telefono, eta);
                 try {
+                    // Aggiunge la persona nel database e recupera l'ID generato
                     personaService.aggiungiPersona(nuovaPersona);
-                    view.getModelloTabella().addRow(new Object[]{nome, cognome, indirizzo, telefono, eta});
+
+                    // Dopo aver recuperato l'ID, aggiunge la persona alla tabella con tutti i dati necessari
+                    view.getModelloTabella().addRow(new Object[]{
+                            nuovaPersona.getNome(),
+                            nuovaPersona.getCognome(),
+                            nuovaPersona.getIndirizzo(),
+                            nuovaPersona.getTelefono(),
+                            nuovaPersona.getEta(),
+                            nuovaPersona.getID()  // Ora l'ID è disponibile
+                    });
+
                 } catch (PersonaDuplicataException ex) {
-                    throw new RuntimeException(ex);
+                    JOptionPane.showMessageDialog(editor, "Persona già esistente.", "Errore", JOptionPane.ERROR_MESSAGE);
                 }
 
                 editor.dispose();
@@ -88,6 +103,7 @@ public class RubricaController {
             editor.getAnnullaButton().addActionListener(event -> editor.dispose());
         }
     }
+
 
     // Listener per modificare una persona esistente
     class ModificaPersonaListener implements ActionListener {
@@ -171,6 +187,7 @@ public class RubricaController {
 
                 if (conferma == JOptionPane.YES_OPTION) {
                     personaService.rimuoviPersona(getPersonaFromTable(selectedRow));
+                    view.aggiornaVista();
                 }
             } else {
                 JOptionPane.showMessageDialog(view, "Seleziona una persona da eliminare.", "Errore", JOptionPane.ERROR_MESSAGE);

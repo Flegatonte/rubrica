@@ -33,8 +33,12 @@ public class VistaPrincipale extends JFrame {
         setLayout(new BorderLayout());
 
         // Inizializzazione dei componenti
-        modelloTabella = new DefaultTableModel(new Object[]{"Nome", "Cognome", "Indirizzo", "Telefono", "Età", "ID"}, 0);
-        tabellaPersone = new JTable(modelloTabella);
+        modelloTabella = new DefaultTableModel(new Object[]{"Nome", "Cognome", "Indirizzo", "Telefono", "Età", "ID"}, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Rendi tutte le celle non modificabili
+            }
+        };        tabellaPersone = new JTable(modelloTabella);
         JScrollPane scrollPane = new JScrollPane(tabellaPersone);
 
         tabellaPersone.getColumnModel().getColumn(2).setMinWidth(0);
@@ -79,6 +83,10 @@ public class VistaPrincipale extends JFrame {
     private void caricaPersoneDalDatabase() {
         Iterable<Persona> persone = personaService.recuperaTutteLePersone();
         aggiornaTabella(persone);
+    }
+
+    public void aggiornaVista() {
+        caricaPersoneDalDatabase();
     }
 
     // Metodo per aggiornare la tabella delle persone

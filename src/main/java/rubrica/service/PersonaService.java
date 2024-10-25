@@ -39,29 +39,19 @@ public class PersonaService {
         personaDAO.rimuoviPersona(persona);
     }
 
+
     private boolean isDuplicato(Persona persona) {
-        List<Persona> persone = personaDAO.recuperaTutteLePersone();
-        for (Persona p : persone) {
-            if (p.getNome().equals(persona.getNome()) &&
-                    p.getCognome().equals(persona.getCognome()) &&
-                    !(p.getID() == persona.getID())) {
-                return true;
-            }
-        }
-        return false;
+        return personaDAO.recuperaTutteLePersone().stream()
+                .anyMatch(p -> p.getNome().equals(persona.getNome()) &&
+                        p.getCognome().equals(persona.getCognome()) &&
+                        p.getID() != persona.getID());
     }
 
     private boolean isDuplicatoModifica(Persona persona) {
-        List<Persona> persone = personaDAO.recuperaTutteLePersone(); // Ottieni tutte le persone dal database
-        for (Persona p : persone) {
-            // Controlla se nome, cognome e telefono sono gli stessi e se non è la stessa persona
-            if (p.getNome().equals(persona.getNome()) &&
-                    p.getCognome().equals(persona.getCognome()) &&
-                    p.getTelefono().equals(persona.getTelefono()) &&
-                    !(p.getID() == persona.getID())) {
-                return true; // Trovato un duplicato
-            }
-        }
-        return false; // Nessun duplicato trovato
+        return personaDAO.recuperaTutteLePersone().stream()
+                .anyMatch(p -> p.getNome().equals(persona.getNome()) &&
+                        p.getCognome().equals(persona.getCognome()) &&
+                        p.getTelefono().equals(persona.getTelefono()) &&
+                        p.getID() != persona.getID());
     }
 }
