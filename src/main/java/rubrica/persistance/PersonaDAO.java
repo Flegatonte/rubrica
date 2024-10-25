@@ -49,7 +49,6 @@ public class PersonaDAO {
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     persona.setID(generatedKeys.getLong(1));
-                    System.out.println("ID generato: " + persona.getID());
                 }
             }
         } catch (SQLException e) {

@@ -1,4 +1,4 @@
-package rubrica; // o rubrica.application
+package rubrica;
 
 import rubrica.controller.RubricaController;
 import rubrica.persistance.PersonaDAO;

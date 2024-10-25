@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e90d759e-3852-4fb4-8aa4-26be46e73eb9" name="Changes" comment="id issues fixed">
+    <list default="true" id="e90d759e-3852-4fb4-8aa4-26be46e73eb9" name="Changes" comment="code cleansing">
+      <change afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/controller/RubricaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/controller/RubricaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/model/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/model/Persona.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/view/EditorPersona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/view/EditorPersona.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/view/VistaPrincipale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/view/VistaPrincipale.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rubrica/persistance/PersonaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rubrica/persistance/PersonaDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +158,14 @@
       <option name="project" value="LOCAL" />
       <updated>1729853131235</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="code cleansing">
+      <created>1729853905119</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1729853905119</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -184,6 +190,7 @@
     <MESSAGE value="persistance with database - missing commits" />
     <MESSAGE value="config file usage added" />
     <MESSAGE value="id issues fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="id issues fixed" />
+    <MESSAGE value="code cleansing" />
+    <option name="LAST_COMMIT_MESSAGE" value="code cleansing" />
   </component>
 </project>
